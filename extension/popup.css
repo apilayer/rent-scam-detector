@@ -1,0 +1,114 @@
+/* Zenserp's palette, matching the web app. */
+:root {
+  --bg: #13131f;
+  --elev: #1a1a2e;
+  --elev2: #22223a;
+  --border: #2e2e4a;
+  --fg: #ececf5;
+  --muted: #a3a3bf;
+  --dim: #70708f;
+  --accent: #5a67d8;
+  --bright: #7f8ae8;
+  --safe: #2fa36b;
+  --warn: #e0a63c;
+  --danger: #e2575c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 380px;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.45 "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--elev);
+}
+header h1 { margin: 0; font-size: 13px; font-weight: 600; flex: 1; }
+.mark {
+  width: 16px; height: 16px; border-radius: 4px;
+  background: var(--accent);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.18);
+}
+header button {
+  background: none; border: none; color: var(--dim);
+  cursor: pointer; font-size: 14px; padding: 2px 4px;
+}
+header button:hover { color: var(--fg); }
+
+main, section { padding: 14px; }
+
+.lede { margin: 0 0 10px; font-size: 13px; }
+.hint { margin: 8px 0 0; font-size: 11px; color: var(--dim); }
+.error { margin: 0 0 10px; font-size: 12px; color: var(--danger); }
+
+button.primary, button.secondary {
+  width: 100%; padding: 9px 12px; border-radius: 8px;
+  font: 600 13px "IBM Plex Sans", system-ui, sans-serif;
+  cursor: pointer; border: 1px solid transparent;
+}
+button.primary { background: var(--accent); color: #fff; }
+button.primary:hover { background: var(--bright); }
+button.primary:disabled { opacity: 0.5; cursor: default; }
+button.secondary { background: var(--elev2); color: var(--fg); border-color: var(--border); }
+
+label { display: block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); }
+input {
+  width: 100%; margin-top: 6px; padding: 8px 10px;
+  background: var(--elev2); border: 1px solid var(--border); border-radius: 8px;
+  color: var(--fg); font: 12px "IBM Plex Mono", ui-monospace, monospace;
+}
+input:focus { outline: none; border-color: var(--accent); }
+
+.bar { height: 4px; background: var(--elev2); border-radius: 999px; overflow: hidden; }
+.bar span {
+  display: block; height: 100%; width: 35%; background: var(--accent);
+  border-radius: 999px; animation: slide 1.5s ease-in-out infinite;
+}
+@keyframes slide { 0% { margin-left: -35%; } 100% { margin-left: 100%; } }
+
+/* Verdict */
+.score { display: flex; align-items: baseline; gap: 10px; }
+.score b { font-size: 26px; font-family: "IBM Plex Mono", monospace; }
+.score span { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.headline { margin: 8px 0 0; font-size: 12px; }
+
+.finding { padding: 8px 0; border-top: 1px solid var(--border); }
+.finding-top { display: flex; align-items: center; gap: 6px; }
+.tag {
+  font: 600 9px "IBM Plex Mono", monospace; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 1px 5px; border-radius: 4px; border: 1px solid;
+}
+.tag.danger { color: var(--danger); border-color: color-mix(in oklab, var(--danger) 45%, transparent); }
+.tag.warn { color: var(--warn); border-color: color-mix(in oklab, var(--warn) 45%, transparent); }
+.tag.safe { color: var(--safe); border-color: color-mix(in oklab, var(--safe) 45%, transparent); }
+.tag.info { color: var(--muted); border-color: var(--border); }
+.finding-label { font-size: 12px; font-weight: 500; }
+.finding-detail { margin: 4px 0 0; font-size: 11px; color: var(--muted); }
+
+.match { padding: 8px; margin-top: 6px; background: var(--elev2); border: 1px solid var(--border); border-radius: 8px; }
+.match a, .match .title { font-size: 11px; color: var(--bright); text-decoration: none; }
+.match a:hover { text-decoration: underline; }
+.match .host { font: 10px "IBM Plex Mono", monospace; color: var(--dim); margin: 2px 0 0; }
+.match ul { margin: 5px 0 0; padding-left: 14px; }
+.match li { font-size: 11px; color: var(--muted); }
+
+#open-full { display: block; margin-top: 12px; font-size: 11px; color: var(--bright); text-align: center; }
+
+footer {
+  display: flex; align-items: center; gap: 5px;
+  padding: 9px 14px; border-top: 1px solid var(--border);
+  font-size: 10px; color: var(--dim); background: var(--elev);
+}
+footer strong { color: var(--muted); font-weight: 600; }
+.dot { opacity: 0.5; }
+
+h3.section { margin: 14px 0 0; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); }

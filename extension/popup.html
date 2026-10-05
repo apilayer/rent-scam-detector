@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Rental Scam Detector</title>
+  </head>
+  <body>
+    <header>
+      <span class="mark" aria-hidden="true"></span>
+      <h1>Rental Scam Detector</h1>
+      <button id="settings-toggle" title="Settings" aria-label="Settings">⚙</button>
+    </header>
+
+    <section id="settings" hidden>
+      <label for="api-base">Where the app is running</label>
+      <input id="api-base" type="url" placeholder="https://your-deployment.vercel.app" />
+      <p class="hint">
+        The check runs against your own deployment. Photos are sent to it, not
+        stored anywhere by the extension.
+      </p>
+    </section>
+
+    <main id="idle">
+      <p class="lede">Read the listing on this tab, then check where its photos appear.</p>
+      <button id="scan" class="primary">Scan this page</button>
+      <p class="hint" id="page-host"></p>
+    </main>
+
+    <main id="busy" hidden>
+      <p class="lede" id="stage">Reading the page</p>
+      <div class="bar"><span></span></div>
+      <p class="hint">A reverse image lookup drives a real search engine and can take up to a minute. Keep this popup open.</p>
+    </main>
+
+    <main id="result" hidden>
+      <div id="verdict"></div>
+      <div id="findings"></div>
+      <div id="matches"></div>
+      <a id="open-full" href="#" target="_blank" rel="noreferrer">Open the full report</a>
+    </main>
+
+    <main id="failed" hidden>
+      <p class="error" id="error-text"></p>
+      <button id="retry" class="secondary">Try again</button>
+    </main>
+
+    <footer>
+      <span>Powered by</span>
+      <strong>zenserp</strong>
+      <span class="dot">·</span>
+      <strong>APILayer</strong>
+    </footer>
+    <script src="popup.js"></script>
+  </body>
+</html>
