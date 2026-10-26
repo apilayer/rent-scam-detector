@@ -8,7 +8,7 @@ export function Footer() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-2">
           <span className="flex items-center gap-2.5">
-            <span className="mono text-[10px] tracking-wider text-fg-dim uppercase">Powered by</span>
+            <span className="label text-[10px] tracking-wider text-fg-dim uppercase">Powered by</span>
             <ZenserpLogo height={16} />
             <span className="h-3.5 w-px bg-border-strong" />
             <ApiLayerLogo height={12} />
@@ -23,7 +23,7 @@ export function Footer() {
             href="https://zenserp.com/documentation/"
             target="_blank"
             rel="noreferrer noopener"
-            className="mono text-[11px] text-fg-muted transition hover:text-fg"
+            className="label text-[11px] text-fg-muted transition hover:text-fg"
           >
             Zenserp docs ↗
           </a>
@@ -31,13 +31,13 @@ export function Footer() {
             href="https://apilayer.com/"
             target="_blank"
             rel="noreferrer noopener"
-            className="mono text-[11px] text-fg-muted transition hover:text-fg"
+            className="label text-[11px] text-fg-muted transition hover:text-fg"
           >
             APILayer ↗
           </a>
         </div>
       </div>
-      <p className="mono mt-5 border-t border-border py-4 text-[10px] text-fg-dim">
+      <p className="label mt-5 border-t border-border py-4 text-[10px] text-fg-dim">
         © {YEAR} Rental Scam Detector · Zenserp by APILayer
       </p>
     </footer>

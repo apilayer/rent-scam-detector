@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BASE_PATH } from "@/app/lib/basePath";
 import type { IAnalysis } from "@/interfaces/analysis.interface";
 import { Report } from "./Report";
 
@@ -19,12 +20,12 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mono text-[10px] tracking-wider text-fg-dim uppercase">{label}</span>
+      <span className="label text-[10px] tracking-wider text-fg-dim uppercase">{label}</span>
       <input
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="mono mt-1 w-full rounded-lg border border-border bg-bg-elev-2 px-2.5 py-2 text-[13px] text-fg outline-none transition focus:border-accent"
+        className="label mt-1 w-full rounded-lg border border-border bg-bg-elev-2 px-2.5 py-2 text-[13px] text-fg outline-none transition focus:border-accent"
       />
       {hint && <span className="mt-1 block text-[10px] text-fg-dim">{hint}</span>}
     </label>
@@ -79,7 +80,7 @@ export function Analyzer() {
   async function send(init: RequestInit) {
     startProgress();
     try {
-      const res = await fetch("/api/analyze", init);
+      const res = await fetch(`${BASE_PATH}/api/analyze`, init);
       const json = await res.json();
       if (!res.ok) {
         setBlocked(Boolean(json.blocked));
@@ -131,7 +132,7 @@ export function Analyzer() {
                 setMode(id);
                 setError(null);
               }}
-              className={`mono flex-1 rounded-md px-3 py-1.5 text-[11px] tracking-wide transition ${
+              className={`label flex-1 rounded-md px-3 py-1.5 text-[11px] tracking-wide transition ${
                 mode === id ? "bg-bg-elev font-semibold text-fg" : "text-fg-dim hover:text-fg"
               }`}
             >
@@ -142,7 +143,7 @@ export function Analyzer() {
 
         {mode === "url" ? (
           <form onSubmit={analyze}>
-            <label htmlFor="listing-url" className="mono text-[10px] tracking-wider text-fg-dim uppercase">
+            <label htmlFor="listing-url" className="label text-[10px] tracking-wider text-fg-dim uppercase">
               Rental listing URL
             </label>
             <div className="mt-2 flex flex-col gap-2 sm:flex-row">
@@ -151,7 +152,7 @@ export function Analyzer() {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://  paste the listing you were sent"
-                className="mono min-w-0 flex-1 rounded-lg border border-border bg-bg-elev-2 px-3 py-2.5 text-sm text-fg outline-none transition focus:border-accent"
+                className="label min-w-0 flex-1 rounded-lg border border-border bg-bg-elev-2 px-3 py-2.5 text-sm text-fg outline-none transition focus:border-accent"
               />
               <button
                 type="submit"
@@ -168,7 +169,7 @@ export function Analyzer() {
           </form>
         ) : (
           <form onSubmit={analyzeUploads}>
-            <label className="mono text-[10px] tracking-wider text-fg-dim uppercase">
+            <label className="label text-[10px] tracking-wider text-fg-dim uppercase">
               Photos from the listing
             </label>
             <div
@@ -190,7 +191,7 @@ export function Analyzer() {
               {files.length > 0 ? (
                 <p className="text-xs text-fg">
                   {files.length} photo{files.length === 1 ? "" : "s"} ready:{" "}
-                  <span className="mono text-fg-muted">
+                  <span className="label text-fg-muted">
                     {files.map((f) => f.name).join(", ").slice(0, 70)}
                   </span>
                 </p>
@@ -199,7 +200,7 @@ export function Analyzer() {
                   <p className="text-xs text-fg-muted">
                     Drop up to four photos from the advert, or click to choose
                   </p>
-                  <p className="mono mt-1 text-[10px] text-fg-dim">
+                  <p className="label mt-1 text-[10px] text-fg-dim">
                     Screenshots work. Saved images work. 12 MB each.
                   </p>
                 </>
@@ -271,7 +272,7 @@ export function Analyzer() {
                   setMode("upload");
                   setError(null);
                 }}
-                className="mono mt-2 rounded-md border border-accent/50 bg-accent-soft px-2.5 py-1.5 text-[11px] text-accent transition hover:brightness-110"
+                className="label mt-2 rounded-md border border-accent/50 bg-accent-soft px-2.5 py-1.5 text-[11px] text-accent transition hover:brightness-110"
               >
                 Upload the photos instead
               </button>

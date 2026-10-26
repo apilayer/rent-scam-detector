@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { assetPath } from "@/app/lib/assets";
 
 const STEPS = [
   "Download the zip and unzip it somewhere you will keep it.",
@@ -21,7 +22,7 @@ export function ExtensionCallout() {
     <section className="overflow-hidden rounded-xl border border-accent/30 bg-bg-elev">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <div className="min-w-0">
-          <h2 className="display text-base text-fg">Check listings the site will not let us read</h2>
+          <h2 className="display text-[1.25rem] leading-[1.4] text-fg md:text-[1.5rem] md:leading-[1.75rem]">Check listings the site will not let us read</h2>
           <p className="mt-1 max-w-xl text-[12px] leading-relaxed text-fg-muted">
             Some portals block automated requests outright. The browser extension
             reads the page you are already looking at, so those listings can be
@@ -30,7 +31,7 @@ export function ExtensionCallout() {
         </div>
         <div className="flex shrink-0 gap-2">
           <a
-            href="/rental-scam-detector-extension.zip"
+            href={assetPath("/rental-scam-detector-extension.zip")}
             download
             className="rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white transition hover:bg-accent-bright"
           >
@@ -39,7 +40,7 @@ export function ExtensionCallout() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="mono rounded-lg border border-border bg-bg-elev-2 px-3 py-2 text-[11px] text-fg-muted transition hover:text-fg"
+            className="label rounded-lg border border-border bg-bg-elev-2 px-3 py-2 text-[11px] text-fg-muted transition hover:text-fg"
             aria-expanded={open}
           >
             {open ? "Hide steps" : "How to install"}
@@ -51,7 +52,7 @@ export function ExtensionCallout() {
         <ol className="space-y-2 border-t border-border bg-bg-elev-2 px-4 py-4">
           {STEPS.map((s, i) => (
             <li key={s} className="flex gap-3 text-[12px] text-fg-muted">
-              <span className="mono shrink-0 font-semibold text-accent-bright">
+              <span className="label shrink-0 font-semibold text-accent-bright">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span>{s}</span>

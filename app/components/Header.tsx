@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ApiLayerLogo, Mark } from "./Brand";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   return (
@@ -9,7 +8,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2 text-accent transition hover:opacity-80">
             <Mark />
-            <span className="mono text-sm font-semibold tracking-tight text-fg">
+            <span className="label text-sm font-semibold tracking-tight text-fg">
               Rental Scam Detector
             </span>
           </Link>
@@ -32,7 +31,6 @@ export function Header() {
           >
             Get API Key
           </a>
-          <ThemeToggle />
         </div>
       </div>
     </header>

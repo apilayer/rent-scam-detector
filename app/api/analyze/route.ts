@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
     const hosted: string[] = [];
     for (const file of files.slice(0, MAX_IMAGES_TO_SEARCH)) {
       const bytes = Buffer.from(await file.arrayBuffer());
-      hosted.push(`${origin.origin}/api/image/blob/${putBlob(bytes, file.type || "image/jpeg")}`);
+      hosted.push(`${origin.baseUrl}/api/image/blob/${putBlob(bytes, file.type || "image/jpeg")}`);
     }
 
     listing = manualListing(form, hosted);

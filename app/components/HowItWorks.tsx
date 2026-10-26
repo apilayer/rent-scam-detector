@@ -28,7 +28,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <section>
-      <h2 className="display text-xl text-fg">How the check works</h2>
+      <h2 className="display text-[1.75rem] leading-[1.2] text-fg md:text-[2.25rem] md:leading-[2.75rem]">How the check works</h2>
       <p className="mt-1 max-w-2xl text-sm text-fg-muted">
         Three steps, and the third is the one that matters.
       </p>
@@ -43,7 +43,7 @@ export function HowItWorks() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={s.image} alt={s.alt} className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-elev via-bg-elev/40 to-transparent" />
-              <span className="mono absolute top-2.5 left-3 text-[11px] font-bold text-accent-bright">
+              <span className="label absolute top-2.5 left-3 text-[11px] font-bold text-accent-bright">
                 {s.n}
               </span>
             </div>

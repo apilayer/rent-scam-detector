@@ -1,4 +1,5 @@
 import { Analyzer } from "./components/Analyzer";
+import { FaqSection } from "./components/FaqSection";
 import { ApiBanner } from "./components/ApiBanner";
 import { ExtensionCallout } from "./components/ExtensionCallout";
 import { Footer } from "./components/Footer";
@@ -18,13 +19,13 @@ export default function Home() {
         <section className="mb-8 overflow-hidden rounded-2xl border border-border bg-bg-elev">
           <div className="grid gap-0 md:grid-cols-[1.25fr_1fr]">
             <div className="p-6 md:p-8">
-              <span className="mono text-[10px] tracking-wider text-accent uppercase">
+              <span className="label text-[10px] tracking-wider text-accent uppercase">
                 Before you pay a deposit
               </span>
-              <h1 className="display mt-2 text-[1.75rem] text-fg md:text-[2.15rem] md:leading-[1.14]">
-                Paste a rental listing. See whose photos it is really using.
+              <h1 className="mt-2 text-[2rem] font-semibold leading-[1.24] text-fg md:text-[2.8125rem] md:leading-[3.5rem]">
+                Is this rental listing a scam?
               </h1>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-fg-muted">
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-fg-muted md:text-[1.1875rem] md:leading-[1.7]">
                 Rental fraud usually starts the same way. Someone lifts the pictures
                 from a real advert and reposts the place cheaper. This tool reads the
                 listing, reverse image searches every photo with Zenserp, then checks
@@ -43,7 +44,7 @@ export default function Home() {
                 {SIGNS.map((s) => (
                   <li
                     key={s}
-                    className="mono rounded-md border border-border bg-bg-elev-2 px-2.5 py-1 text-[10px] text-fg-muted"
+                    className="label rounded-md border border-border bg-bg-elev-2 px-2.5 py-1 text-[10px] text-fg-muted"
                   >
                     {s}
                   </li>
@@ -76,6 +77,10 @@ export default function Home() {
 
         <div className="mt-8">
           <ApiBanner />
+        </div>
+
+        <div className="mt-8">
+          <FaqSection />
         </div>
 
         <Footer />

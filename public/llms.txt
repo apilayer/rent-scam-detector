@@ -1,0 +1,78 @@
+# Rental Scam Detector - check a listing before you pay a deposit
+
+> A free tool that reverse image searches every photograph in a rental listing
+> and shows you every other page using those same pictures, along with whether
+> the price, the address or the dates changed between postings. Powered by the
+> Zenserp API from APILayer.
+
+## What it answers
+
+- **Is this rental listing a scam?** Paste the link. The tool reads the advert,
+  collects the photographs and searches each one across the web.
+- **Where else do these photos appear?** Every matching page is listed with its
+  price, location and date, so you can compare them yourself.
+- **Is cross-posting suspicious?** No. Letting agents list the same property on
+  several portals at once. What matters is whether the details changed.
+- **Why is a much lower price a warning?** Deposit fraud works by making the
+  property irresistible. If the same rooms are at market rate elsewhere, the
+  cheap listing is usually the fake one.
+- **The portal blocked the tool. What now?** Upload the photographs directly
+  with the page they came from, or use the browser extension, which reads the
+  listing you are already viewing.
+
+## How it works
+
+The listing page is fetched and parsed for photographs. Each photograph is sent
+to Zenserp's reverse image search, which is driven by Google Lens, and the
+results are grouped per image. For every page found carrying the same picture,
+the asking price, stated location and listing date are compared against the
+original. Prices are only compared when the periods match, so a weekly rate is
+never measured against a monthly one.
+
+## Limits
+
+- Finding the same photographs elsewhere is not proof of fraud on its own.
+- A listing with original photographs and no matches can still be a scam.
+- Some portals return 403 to automated requests; use the extension for those.
+- Never pay a deposit for a property you have not seen in person, and treat
+  pressure to transfer money quickly as the warning sign it is.
+
+## Data source
+
+Zenserp (https://zenserp.com), an APILayer product. Free tier available.
+
+## Frequently asked questions
+
+### How do I know if a rental listing is a scam?
+
+The strongest signal is the photographs. Scammers rarely take their own, so they lift them from a real advert somewhere else. This tool reverse image searches every photo on the listing and shows you every other page using those same pictures. Finding the property elsewhere is not proof of anything on its own, because agents cross-post constantly. What matters is whether the price, the address or the contact details changed between postings.
+
+### Is cross-posting the same as a scam?
+
+No, and treating it that way is the most common mistake. Letting agents list the same property on several portals at once, which is normal and expected. A listing appearing in five places is unremarkable. The same rooms advertised at half the price, in a different city, or by a different person is what a scam looks like.
+
+### What does the tool actually check?
+
+It reads the advert, extracts the photographs, and reverse image searches each one through Zenserp, which is driven by Google Lens. For every other page using those images it compares the asking price, the stated location and the listing date against the one you gave it. You get the reasons alongside the links, so you can judge the evidence yourself rather than trusting a score.
+
+### Why does a cheaper price mean something is wrong?
+
+A deposit scam works by making the property irresistible. If the same rooms are advertised elsewhere at the market rate and the listing in front of you is far below it, the cheap one is usually the fake. The tool only compares prices that are genuinely comparable, so a weekly rate is never measured against a monthly one.
+
+### The site blocked the tool. What now?
+
+Some portals refuse automated requests outright and return a 403. When that happens you have two options: upload the photographs directly along with the page they came from, or install the browser extension, which reads the listing you are already looking at so the portal sees an ordinary visit.
+
+### What is Zenserp?
+
+Zenserp is a search engine results API from APILayer. It returns Google, Bing and Google Lens results as structured JSON, including reverse image search, which is what this tool uses to find every other page carrying a listing's photographs.
+
+### Does this guarantee a listing is safe?
+
+No. It finds a specific and very common kind of fraud, the kind that reuses photographs from a genuine advert. A listing with original photographs and no matches elsewhere can still be a scam. Never pay a deposit for a property you have not seen, never send money by bank transfer to someone you have not met, and treat pressure to pay quickly as the warning it is.
+
+## Links
+
+- Tool: https://apilayer.com/devtools/rental-scam-detector
+- Zenserp API: https://zenserp.com
+- APILayer: https://apilayer.com

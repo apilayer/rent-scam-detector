@@ -1,24 +1,17 @@
 import Image from "next/image";
+import { assetPath } from "@/app/lib/assets";
 
-/** Zenserp's own wordmark — light artwork on dark surfaces, dark on light. */
+/** Zenserp's wordmark. The app is light-only, so the dark artwork is used. */
 export function ZenserpLogo({ height = 18, className = "" }: { height?: number; className?: string }) {
   const width = Math.round(height * (885 / 188));
   return (
     <span className={`relative inline-block align-middle ${className}`} style={{ width, height }}>
       <Image
-        src="/brand/zenserp-logo-light.svg"
+        src={assetPath("/brand/zenserp-logo-dark.svg")}
         alt="Zenserp"
         width={width}
         height={height}
-        className="hidden object-contain dark:block"
-        priority
-      />
-      <Image
-        src="/brand/zenserp-logo-dark.svg"
-        alt="Zenserp"
-        width={width}
-        height={height}
-        className="block object-contain dark:hidden"
+        className="object-contain"
         priority
       />
     </span>
@@ -28,11 +21,11 @@ export function ZenserpLogo({ height = 18, className = "" }: { height?: number; 
 export function ApiLayerLogo({ height = 14, className = "" }: { height?: number; className?: string }) {
   return (
     <Image
-      src="/apilayer-logo.png"
+      src={assetPath("/apilayer-logo.png")}
       alt="APILayer"
       width={Math.round(height * 5)}
       height={height}
-      className={`w-auto dark:brightness-0 dark:invert ${className}`}
+      className={`w-auto ${className}`}
       style={{ height }}
     />
   );

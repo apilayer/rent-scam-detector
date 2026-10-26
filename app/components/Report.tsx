@@ -2,7 +2,7 @@
 
 import type { AssessedMatch } from "@/app/lib/matchAnalysis";
 import type { IAnalysis } from "@/interfaces/analysis.interface";
-import { ApiBannerCompact } from "./ApiBanner";
+import { ApiBannerCompact, ApiBannerPanel } from "./ApiBanner";
 
 const LEVEL_CLASS: Record<string, string> = {
   danger: "v-danger",
@@ -36,14 +36,14 @@ export function Report({ data }: { data: IAnalysis }) {
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-baseline gap-3">
-            <span className="mono text-3xl font-bold" style={{ color: colour }}>
+            <span className="label text-3xl font-bold" style={{ color: colour }}>
               {verdict.score}
             </span>
-            <span className="mono text-xs tracking-widest uppercase" style={{ color: colour }}>
+            <span className="label text-xs tracking-widest uppercase" style={{ color: colour }}>
               {verdict.band}
             </span>
           </div>
-          <span className="mono text-[10px] tracking-wider text-fg-dim uppercase">
+          <span className="label text-[10px] tracking-wider text-fg-dim uppercase">
             risk score · 0–100
           </span>
         </div>
@@ -62,13 +62,13 @@ export function Report({ data }: { data: IAnalysis }) {
             <li key={f.label}>
               <div className="flex items-center gap-2">
                 <span
-                  className={`mono shrink-0 rounded border px-1.5 py-0.5 text-[9px] tracking-widest uppercase ${LEVEL_CLASS[f.level]}`}
+                  className={`label shrink-0 rounded border px-1.5 py-0.5 text-[9px] tracking-widest uppercase ${LEVEL_CLASS[f.level]}`}
                 >
                   {f.level}
                 </span>
                 <span className="text-xs font-medium text-fg">{f.label}</span>
                 {f.points > 0 && (
-                  <span className="mono ml-auto shrink-0 text-[10px] text-fg-dim">+{f.points}</span>
+                  <span className="label ml-auto shrink-0 text-[10px] text-fg-dim">+{f.points}</span>
                 )}
               </div>
               <p className="mt-1 text-[11px] leading-relaxed text-fg-muted">{f.detail}</p>
@@ -81,10 +81,10 @@ export function Report({ data }: { data: IAnalysis }) {
       <section className="rounded-xl border border-border bg-bg-elev p-5">
         <div className="mb-3 flex items-start justify-between gap-3 border-b border-border pb-2.5">
           <div>
-            <p className="mono text-[10px] tracking-wider text-fg-dim uppercase">zenserp</p>
+            <p className="label text-[10px] tracking-wider text-fg-dim uppercase">zenserp</p>
             <h3 className="text-sm font-semibold text-fg">Where these photos appear, and whether the details agree</h3>
           </div>
-          <span className="mono shrink-0 text-xs text-fg-dim">
+          <span className="label shrink-0 text-xs text-fg-dim">
             {matches.length} checked
             {data.skippedImages > 0 && ` · ${data.skippedImages} not checked`}
           </span>
@@ -153,15 +153,18 @@ export function Report({ data }: { data: IAnalysis }) {
           </p>
         )}
 
-        <div className="mt-4">
+        <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_240px]">
           <ApiBannerCompact />
+          <div className="hidden sm:block">
+            <ApiBannerPanel />
+          </div>
         </div>
       </section>
 
       {/* What the page said */}
       <section className="rounded-xl border border-border bg-bg-elev p-5">
         <div className="mb-3 border-b border-border pb-2.5">
-          <p className="mono text-[10px] tracking-wider text-fg-dim uppercase">
+          <p className="label text-[10px] tracking-wider text-fg-dim uppercase">
             Read from the page{listing.via.length > 0 && ` · ${listing.via.join(", ")}`}
           </p>
           <h3 className="text-sm font-semibold text-fg">The listing</h3>
@@ -178,7 +181,7 @@ export function Report({ data }: { data: IAnalysis }) {
             <Row label="Phones on page" value={listing.phones.join(", ") || null} />
             {listing.description && (
               <details className="mt-3">
-                <summary className="mono cursor-pointer text-[10px] tracking-wider text-fg-dim uppercase transition hover:text-fg">
+                <summary className="label cursor-pointer text-[10px] tracking-wider text-fg-dim uppercase transition hover:text-fg">
                   description
                 </summary>
                 <p className="mt-2 text-[11px] leading-relaxed text-fg-muted">{listing.description}</p>
@@ -187,7 +190,7 @@ export function Report({ data }: { data: IAnalysis }) {
           </div>
           {reused.length > 0 && (
             <p
-              className="mono h-fit shrink-0 rounded-lg border px-3 py-2 text-[10px] leading-relaxed tracking-wide"
+              className="label h-fit shrink-0 rounded-lg border px-3 py-2 text-[10px] leading-relaxed tracking-wide"
               style={{ borderColor: "color-mix(in oklab, var(--danger) 45%, transparent)", color: "var(--danger)" }}
             >
               {reused.length} photo{reused.length === 1 ? "" : "s"} reused
@@ -198,22 +201,22 @@ export function Report({ data }: { data: IAnalysis }) {
 
       {/* Working */}
       <details className="rounded-xl border border-border bg-bg-elev-2">
-        <summary className="mono cursor-pointer px-4 py-3 text-[10px] tracking-wider text-fg-dim uppercase transition hover:text-fg">
+        <summary className="label cursor-pointer px-4 py-3 text-[10px] tracking-wider text-fg-dim uppercase transition hover:text-fg">
           {data.traces.length} request{data.traces.length === 1 ? "" : "s"} behind this report
         </summary>
         <ul className="space-y-2 border-t border-border px-4 py-3">
           {data.traces.map((t, i) => (
             <li key={i} className="text-[11px]">
               <div className="flex items-center gap-2">
-                <span className="mono rounded bg-bg-elev px-1.5 py-0.5 text-[9px] tracking-wider text-accent-bright uppercase">
+                <span className="label rounded bg-bg-elev px-1.5 py-0.5 text-[9px] tracking-wider text-accent-bright uppercase">
                   {t.api}
                 </span>
                 <span className="truncate text-fg-muted">{t.label}</span>
                 {t.elapsedMs != null && (
-                  <span className="mono ml-auto shrink-0 text-fg-dim">{(t.elapsedMs / 1000).toFixed(1)}s</span>
+                  <span className="label ml-auto shrink-0 text-fg-dim">{(t.elapsedMs / 1000).toFixed(1)}s</span>
                 )}
               </div>
-              <p className="mono mt-1 break-all text-[10px] text-fg-dim">{t.url}</p>
+              <p className="label mt-1 break-all text-[10px] text-fg-dim">{t.url}</p>
               {t.notice && <p className="mt-1 text-[11px] text-warn">{t.notice}</p>}
             </li>
           ))}
@@ -240,7 +243,7 @@ function MatchRow({ match }: { match: AssessedMatch }) {
     <li className="min-w-0 rounded-lg border border-border bg-bg-elev-2 p-2.5">
       <div className="flex items-start gap-2">
         <span
-          className={`mono mt-0.5 shrink-0 rounded border px-1.5 py-0.5 text-[9px] tracking-widest uppercase ${style.cls}`}
+          className={`label mt-0.5 shrink-0 rounded border px-1.5 py-0.5 text-[9px] tracking-widest uppercase ${style.cls}`}
         >
           {style.label}
         </span>
@@ -257,7 +260,7 @@ function MatchRow({ match }: { match: AssessedMatch }) {
           ) : (
             <p className="text-[11px] font-medium text-fg">{match.title.slice(0, 90)}</p>
           )}
-          <p className="mono truncate text-[10px] text-fg-dim">
+          <p className="label truncate text-[10px] text-fg-dim">
             {match.url ? match.host : `${match.host} (no direct link available)`}
           </p>
         </div>
@@ -277,7 +280,7 @@ function Row({ label, value }: { label: string; value: string | null }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-border/60 py-1.5 last:border-0">
       <span className="shrink-0 text-xs text-fg-muted">{label}</span>
-      <span className="mono min-w-0 truncate text-right text-xs text-fg">
+      <span className="label min-w-0 truncate text-right text-xs text-fg">
         {value ?? <span className="text-fg-dim">not found</span>}
       </span>
     </div>
